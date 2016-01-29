@@ -12,6 +12,7 @@
         <module>puma-client</module>
         <module>puma-core</module>
     </modules>
+
     <description>puma-parent</description>
     <properties>
 	    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
@@ -20,6 +21,14 @@
     </properties>
     <dependencyManagement>
         <dependencies>
+
+            <dependency>
+                <groupId>com.dianping.puma</groupId>
+                <artifactId>puma-common</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
                 <artifactId>groovy-all</artifactId>
