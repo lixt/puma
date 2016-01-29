@@ -11,6 +11,8 @@
         <module>puma</module>
         <module>puma-client</module>
         <module>puma-core</module>
+        <module>common</module>
+        <module>manage</module>
     </modules>
 
     <description>puma-parent</description>
