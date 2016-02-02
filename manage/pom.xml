@@ -16,5 +16,6 @@
 
     <modules>
         <module>core</module>
+        <module>monitor</module>
     </modules>
 </project>
