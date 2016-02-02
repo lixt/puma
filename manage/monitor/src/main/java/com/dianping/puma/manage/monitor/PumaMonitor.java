@@ -1,7 +1,7 @@
 package com.dianping.puma.manage.monitor;
 
 import com.dianping.puma.common.PumaLifeCycle;
-import com.dianping.puma.manage.monitor.exception.PumaMonitorException;
+import com.dianping.puma.manage.monitor.exception.MonitorException;
 
 /**
  * Created by xiaotian.li on 16/2/2.
@@ -9,7 +9,7 @@ import com.dianping.puma.manage.monitor.exception.PumaMonitorException;
  */
 public interface PumaMonitor extends PumaLifeCycle {
 
-    void start() throws PumaMonitorException;
+    void start() throws MonitorException;
 
-    void stop() throws PumaMonitorException;
+    void stop() throws MonitorException;
 }

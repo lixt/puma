@@ -31,6 +31,12 @@
                 <version>${project.version}</version>
             </dependency>
 
+            <dependency>
+                <groupId>com.dianping.puma</groupId>
+                <artifactId>puma-instance</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
 
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>
