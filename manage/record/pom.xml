@@ -22,11 +22,6 @@
             <artifactId>puma-common</artifactId>
         </dependency>
 
-        <dependency>
-            <groupId>com.dianping.puma</groupId>
-            <artifactId>puma-instance</artifactId>
-        </dependency>
-
         <!-- log-->
         <dependency>
             <groupId>log4j</groupId>

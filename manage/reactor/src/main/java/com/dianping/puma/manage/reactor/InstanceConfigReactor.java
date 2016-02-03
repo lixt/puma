@@ -1,7 +1,7 @@
 package com.dianping.puma.manage.reactor;
 
 import com.dianping.puma.common.PumaLifeCycle;
-import com.dianping.puma.instance.core.config.InstanceConfig;
+import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.manage.reactor.exception.ReactorException;
 
 /**

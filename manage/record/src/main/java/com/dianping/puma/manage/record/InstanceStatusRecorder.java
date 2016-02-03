@@ -1,7 +1,7 @@
 package com.dianping.puma.manage.record;
 
 import com.dianping.puma.common.PumaLifeCycle;
-import com.dianping.puma.instance.core.status.InstanceStatus;
+import com.dianping.puma.common.model.InstanceStatus;
 import com.dianping.puma.manage.record.exception.RecordException;
 
 /**

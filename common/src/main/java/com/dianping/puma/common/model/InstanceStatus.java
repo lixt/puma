@@ -1,4 +1,4 @@
-package com.dianping.puma.instance.core.status;
+package com.dianping.puma.common.model;
 
 /**
  * Created by xiaotian.li on 16/2/3.
