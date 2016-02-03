@@ -4,12 +4,18 @@ import com.dianping.puma.common.AbstractPumaLifeCycle;
 import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.common.util.NamedThreadFactory;
 import com.dianping.puma.manage.monitor.exception.MonitorException;
+import com.dianping.puma.manage.monitor.exception.ReactException;
 import com.dianping.puma.manage.monitor.react.InstanceConfigReactor;
+import com.google.common.base.Function;
+import com.google.common.collect.FluentIterable;
 import com.google.common.collect.Lists;
+import com.google.common.collect.MapDifference;
+import com.google.common.collect.Maps;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import java.util.List;
+import java.util.Map;
 import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
@@ -77,18 +83,75 @@ public abstract class AbstractInstanceConfigMonitor extends AbstractPumaLifeCycl
         }
     }
 
-    private List<InstanceConfig> handleCreatedInstanceConfig(
-            List<InstanceConfig> instanceConfigs, List<InstanceConfig> instanceConfigsCached) {
-        return null;
+    private void handleCreatedInstanceConfig(List<InstanceConfig> instanceConfigs,
+                                             List<InstanceConfig> instanceConfigsCached) {
+
+        Map<String, InstanceConfig> instanceConfigCacheMap = transform(instanceConfigsCached);
+
+        for (InstanceConfig instanceConfig : instanceConfigs) {
+            String database = instanceConfig.getDatabase();
+            if (!instanceConfigCacheMap.containsKey(database)) {
+                try {
+                    instanceConfigReactor.onCreated(instanceConfig);
+                } catch (ReactException e) {
+                    logger.error("Failed to react to created instance config[%s].",
+                            instanceConfig, e);
+                }
+            }
+        }
     }
 
-    private List<InstanceConfig> handleUpdatedInstanceConfig(
-            List<InstanceConfig> instanceConfigs, List<InstanceConfig> instanceConfigsCached) {
-        return null;
+    private void handleUpdatedInstanceConfig(List<InstanceConfig> instanceConfigs,
+                                             List<InstanceConfig> instanceConfigsCached) {
+
+        Map<String, InstanceConfig> instanceConfigCacheMap = transform(instanceConfigsCached);
+
+        for (InstanceConfig instanceConfig : instanceConfigs) {
+            String database = instanceConfig.getDatabase();
+            InstanceConfig instanceConfigCached = instanceConfigCacheMap.get(database);
+            if (instanceConfigCached != null && !instanceConfig.equals(instanceConfigCached)) {
+                try {
+                    instanceConfigReactor.onUpdated(instanceConfig, instanceConfigCached);
+                } catch (ReactException e) {
+                    logger.error("Failed to react to updated instance config[%s -> %s].",
+                            instanceConfigCached, instanceConfig, e);
+                }
+            }
+        }
     }
 
-    private List<InstanceConfig> handleDeletedInstanceConfig(
-            List<InstanceConfig> instanceConfigs, List<InstanceConfig> instanceConfigsCached) {
-        return null;
+    private void handleDeletedInstanceConfig(List<InstanceConfig> instanceConfigs,
+                                             List<InstanceConfig> instanceConfigsCached) {
+
+        Map<String, InstanceConfig> instanceConfigMap = transform(instanceConfigs);
+
+        for (InstanceConfig instanceConfigCached : instanceConfigsCached) {
+            String database = instanceConfigCached.getDatabase();
+            if (!instanceConfigMap.containsKey(database)) {
+                try {
+                    instanceConfigReactor.onDeleted(instanceConfigCached);
+                } catch (ReactException e) {
+                    logger.error("Failed to react to deleted instance config[%s].",
+                            instanceConfigCached, e);
+                }
+            }
+        }
+    }
+
+    private Map<String, InstanceConfig> transform(List<InstanceConfig> instanceConfigs) {
+        return Maps.uniqueIndex(instanceConfigs, new Function<InstanceConfig, String>() {
+            @Override
+            public String apply(InstanceConfig instanceConfig) {
+                return instanceConfig.getDatabase();
+            }
+        });
+    }
+
+    public void setScanIntervalInSecond(long scanIntervalInSecond) {
+        this.scanIntervalInSecond = scanIntervalInSecond;
+    }
+
+    public void setInstanceConfigReactor(InstanceConfigReactor instanceConfigReactor) {
+        this.instanceConfigReactor = instanceConfigReactor;
     }
 }

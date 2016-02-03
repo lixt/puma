@@ -12,11 +12,11 @@ import com.dianping.puma.server.exception.PumaServerException;
  */
 public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implements PumaServer {
 
-    private InstanceManager instanceManager;
+    protected InstanceManager instanceManager;
 
-    private InstanceConfigMonitor instanceConfigMonitor;
+    protected InstanceConfigMonitor instanceConfigMonitor;
 
-    private InstanceStatusRecorder instanceStatusRecorder;
+    protected InstanceStatusRecorder instanceStatusRecorder;
 
     @Override
     public void start() {

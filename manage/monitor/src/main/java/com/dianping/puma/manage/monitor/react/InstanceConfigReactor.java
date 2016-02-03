@@ -8,7 +8,7 @@ import com.dianping.puma.manage.monitor.exception.ReactException;
  * Created by xiaotian.li on 16/2/3.
  * Email: lixiaotian07@gmail.com
  */
-public interface InstanceConfigReactor extends PumaLifeCycle {
+public interface InstanceConfigReactor {
 
     void onCreated(InstanceConfig instanceConfig) throws ReactException;
 
