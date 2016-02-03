@@ -11,6 +11,7 @@
         <module>puma</module>
         <module>puma-client</module>
         <module>puma-core</module>
+        <module>server</module>
         <module>common</module>
         <module>manage</module>
         <module>instance</module>
@@ -25,31 +26,6 @@
     </properties>
     <dependencyManagement>
         <dependencies>
-
-            <dependency>
-                <groupId>com.dianping.puma</groupId>
-                <artifactId>puma-common</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dianping.puma</groupId>
-                <artifactId>puma-instance</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dianping.puma</groupId>
-                <artifactId>puma-manage</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
-            <dependency>
-                <groupId>com.dianping.puma</groupId>
-                <artifactId>puma-manage-core</artifactId>
-                <version>${project.version}</version>
-            </dependency>
-
 
             <dependency>
                 <groupId>org.codehaus.groovy</groupId>

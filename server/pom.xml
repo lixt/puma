@@ -6,26 +6,30 @@
         <groupId>com.dianping.puma</groupId>
         <artifactId>puma-parent</artifactId>
         <version>2.0.1-SNAPSHOT</version>
-        <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>puma-instance-core</artifactId>
-    <name>puma-instance-core</name>
+    <artifactId>puma-server</artifactId>
+    <name>puma-server</name>
     <packaging>jar</packaging>
 
     <dependencies>
 
-        <!-- puma -->
         <dependency>
             <groupId>com.dianping.puma</groupId>
-            <artifactId>puma-common</artifactId>
+            <artifactId>puma-manage-core</artifactId>
             <version>${project.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.dianping.puma</groupId>
-            <artifactId>puma-core</artifactId>
+            <artifactId>puma-manage-monitor</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
+        <dependency>
+            <groupId>com.dianping.puma</groupId>
+            <artifactId>puma-manage-record</artifactId>
             <version>${project.version}</version>
         </dependency>
 
@@ -57,4 +61,5 @@
         </dependency>
 
     </dependencies>
+
 </project>

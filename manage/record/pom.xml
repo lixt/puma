@@ -20,6 +20,7 @@
         <dependency>
             <groupId>com.dianping.puma</groupId>
             <artifactId>puma-common</artifactId>
+            <version>${project.version}</version>
         </dependency>
 
         <!-- log-->
