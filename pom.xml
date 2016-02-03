@@ -14,6 +14,7 @@
         <module>common</module>
         <module>manage</module>
         <module>instance</module>
+        <module>test</module>
     </modules>
 
     <description>puma-parent</description>
@@ -34,6 +35,12 @@
             <dependency>
                 <groupId>com.dianping.puma</groupId>
                 <artifactId>puma-instance</artifactId>
+                <version>${project.version}</version>
+            </dependency>
+
+            <dependency>
+                <groupId>com.dianping.puma</groupId>
+                <artifactId>puma-manage</artifactId>
                 <version>${project.version}</version>
             </dependency>
 

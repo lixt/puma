@@ -10,8 +10,7 @@
     </parent>
 
     <modelVersion>4.0.0</modelVersion>
-    <artifactId>puma-manage</artifactId>
-    <version>2.0.1-SNAPSHOT</version>
+    <artifactId>puma-manage-monitor</artifactId>
     <name>puma-manage-monitor</name>
     <packaging>jar</packaging>
 

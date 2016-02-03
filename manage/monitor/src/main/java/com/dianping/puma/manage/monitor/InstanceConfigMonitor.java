@@ -10,9 +10,9 @@ import java.util.List;
  * Created by xiaotian.li on 16/2/2.
  * Email: lixiaotian07@gmail.com
  */
-public interface DatabaseInstanceConfigMonitor extends PumaLifeCycle {
+public interface InstanceConfigMonitor extends PumaLifeCycle {
 
-    InstanceConfig getInstanceConfig(String database) throws MonitorException;
+    InstanceConfig get(String database) throws MonitorException;
 
-    List<InstanceConfig> getAllInstanceConfigs() throws MonitorException;
+    List<InstanceConfig> getAll() throws MonitorException;
 }
