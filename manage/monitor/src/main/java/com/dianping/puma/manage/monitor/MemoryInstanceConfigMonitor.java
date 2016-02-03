@@ -13,7 +13,7 @@ import java.util.concurrent.ConcurrentMap;
  * Created by xiaotian.li on 16/2/3.
  * Email: lixiaotian07@gmail.com
  */
-public class MemoryInstanceConfigMonitor extends AbstractPumaLifeCycle implements InstanceConfigMonitor {
+public class MemoryInstanceConfigMonitor extends AbstractInstanceConfigMonitor {
 
     private ConcurrentMap<String, InstanceConfig> instanceConfigMap = new MapMaker().makeMap();
 
@@ -28,5 +28,6 @@ public class MemoryInstanceConfigMonitor extends AbstractPumaLifeCycle implement
     }
 
     public void set(String database, InstanceConfig instanceConfig) throws MonitorException {
+        instanceConfigMap.put(database, instanceConfig);
     }
 }
