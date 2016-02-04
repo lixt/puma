@@ -1,4 +1,4 @@
-package com.dianping.puma.test.running;
+package com.dianping.puma.test.config;
 
 import com.dianping.puma.server.config.PumaConfig;
 import com.dianping.puma.server.config.mode.MonitorMode;

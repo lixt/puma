@@ -29,4 +29,8 @@ public class MemoryInstanceConfigMonitor extends AbstractInstanceConfigMonitor {
     public void set(String database, InstanceConfig instanceConfig) throws MonitorException {
         instanceConfigMap.put(database, instanceConfig);
     }
+
+    public void remove(String database) throws MonitorException {
+        instanceConfigMap.remove(database);
+    }
 }

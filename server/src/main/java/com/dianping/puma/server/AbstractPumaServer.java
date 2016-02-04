@@ -30,9 +30,7 @@ public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implement
         super.start();
 
         try {
-            instanceManager.start();
             monitor.start();
-            recorder.start();
         } catch (Throwable t) {
             throw new PumaServerException("Failed to start puma server.", t);
         }
@@ -43,7 +41,6 @@ public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implement
         super.stop();
 
         try {
-            instanceManager.stop();
             monitor.stop();
             recorder.stop();
         } catch (Throwable t) {
