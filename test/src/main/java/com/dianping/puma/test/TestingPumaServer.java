@@ -2,23 +2,17 @@ package com.dianping.puma.test;
 
 import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.common.model.InstanceStatus;
-import com.dianping.puma.manage.monitor.MemoryInstanceConfigMonitor;
-import com.dianping.puma.server.AbstractPumaServer;
+import com.dianping.puma.server.PumaServerWithoutSpring;
+import com.dianping.puma.test.running.TestingPumaConfig;
 
 /**
  * Created by xiaotian.li on 16/2/3.
  * Email: lixiaotian07@gmail.com
  */
-public class TestingPumaServer extends AbstractPumaServer {
-
-    private MemoryInstanceConfigMonitor instanceConfigMonitor;
+public class TestingPumaServer extends PumaServerWithoutSpring {
 
     public TestingPumaServer() {
-        init();
-    }
-
-    private void init() {
-        instanceConfigMonitor = new MemoryInstanceConfigMonitor();
+        super(new TestingPumaConfig());
     }
 
     public void setInstanceConfig(String database, InstanceConfig instanceConfig) {

@@ -1,6 +1,5 @@
 package com.dianping.puma.manage.monitor;
 
-import com.dianping.puma.common.AbstractPumaLifeCycle;
 import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.manage.monitor.exception.MonitorException;
 import com.google.common.collect.FluentIterable;

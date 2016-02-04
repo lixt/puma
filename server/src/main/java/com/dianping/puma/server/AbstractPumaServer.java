@@ -3,8 +3,11 @@ package com.dianping.puma.server;
 import com.dianping.puma.common.AbstractPumaLifeCycle;
 import com.dianping.puma.manage.core.InstanceManager;
 import com.dianping.puma.manage.monitor.InstanceConfigMonitor;
+import com.dianping.puma.manage.monitor.react.InstanceConfigReactor;
 import com.dianping.puma.manage.record.InstanceStatusRecorder;
 import com.dianping.puma.server.exception.PumaServerException;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  * Created by xiaotian.li on 16/2/3.
@@ -12,11 +15,15 @@ import com.dianping.puma.server.exception.PumaServerException;
  */
 public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implements PumaServer {
 
+    protected final Logger logger = LoggerFactory.getLogger(getClass());
+
     protected InstanceManager instanceManager;
 
-    protected InstanceConfigMonitor instanceConfigMonitor;
+    protected InstanceConfigMonitor monitor;
 
-    protected InstanceStatusRecorder instanceStatusRecorder;
+    protected InstanceConfigReactor reactor;
+
+    protected InstanceStatusRecorder recorder;
 
     @Override
     public void start() {
@@ -24,8 +31,8 @@ public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implement
 
         try {
             instanceManager.start();
-            instanceConfigMonitor.start();
-            instanceStatusRecorder.start();
+            monitor.start();
+            recorder.start();
         } catch (Throwable t) {
             throw new PumaServerException("Failed to start puma server.", t);
         }
@@ -37,8 +44,8 @@ public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implement
 
         try {
             instanceManager.stop();
-            instanceConfigMonitor.stop();
-            instanceStatusRecorder.stop();
+            monitor.stop();
+            recorder.stop();
         } catch (Throwable t) {
             throw new PumaServerException("Failed to stop puma server.", t);
         }
