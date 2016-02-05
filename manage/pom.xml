@@ -15,6 +15,7 @@
 
     <modules>
         <module>core</module>
+        <module>merge</module>
         <module>monitor</module>
         <module>record</module>
     </modules>

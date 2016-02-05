@@ -1,6 +1,5 @@
 package com.dianping.puma.manage.monitor.react;
 
-import com.dianping.puma.common.PumaLifeCycle;
 import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.manage.monitor.exception.ReactException;
 

@@ -6,24 +6,24 @@ import com.dianping.puma.common.exception.PumaException;
  * Created by xiaotian.li on 16/2/2.
  * Email: lixiaotian07@gmail.com
  */
-public class ManageException extends PumaException {
+public class PumaManageException extends PumaException {
 
-    public ManageException() {
+    public PumaManageException() {
     }
 
-    public ManageException(String message) {
+    public PumaManageException(String message) {
         super(message);
     }
 
-    public ManageException(String message, Throwable cause) {
+    public PumaManageException(String message, Throwable cause) {
         super(message, cause);
     }
 
-    public ManageException(Throwable cause) {
+    public PumaManageException(Throwable cause) {
         super(cause);
     }
 
-    public ManageException(String format, Object... arguments) {
+    public PumaManageException(String format, Object... arguments) {
         super(format, arguments);
     }
 }

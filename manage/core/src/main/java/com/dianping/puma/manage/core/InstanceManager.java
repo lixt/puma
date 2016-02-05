@@ -2,7 +2,7 @@ package com.dianping.puma.manage.core;
 
 import com.dianping.puma.common.PumaLifeCycle;
 import com.dianping.puma.common.model.InstanceConfig;
-import com.dianping.puma.manage.core.exception.ManageException;
+import com.dianping.puma.manage.core.exception.PumaManageException;
 
 /**
  * Created by xiaotian.li on 16/2/2.
@@ -10,9 +10,9 @@ import com.dianping.puma.manage.core.exception.ManageException;
  */
 public interface InstanceManager extends PumaLifeCycle {
 
-    void load(InstanceConfig instanceConfig) throws ManageException;
+    void load(InstanceConfig instanceConfig) throws PumaManageException;
 
-    void unload(String database) throws ManageException;
+    void unload(String database) throws PumaManageException;
 
-    void reload(InstanceConfig instanceConfig) throws ManageException;
+    void reload(InstanceConfig instanceConfig) throws PumaManageException;
 }
