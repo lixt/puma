@@ -8,6 +8,8 @@ import java.util.Set;
  */
 public class InstanceConfig {
 
+    private String cluster;
+
     private String database;
 
     private String tableBlackRegex;
@@ -17,6 +19,14 @@ public class InstanceConfig {
     private Set<BinlogServer> binlogServers;
 
     private boolean mergable;
+
+    public String getCluster() {
+        return cluster;
+    }
+
+    public void setCluster(String cluster) {
+        this.cluster = cluster;
+    }
 
     public String getDatabase() {
         return database;

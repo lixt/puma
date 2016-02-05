@@ -1,5 +1,9 @@
 package com.dianping.puma.server;
 
+import com.dianping.puma.manage.core.InstanceManagerImpl;
+import com.dianping.puma.manage.core.merge.MergedInstanceManager;
+import com.dianping.puma.manage.merge.InstanceConfigMerger;
+import com.dianping.puma.manage.merge.StrictInstanceConfigMerger;
 import com.dianping.puma.manage.monitor.MemoryInstanceConfigMonitor;
 import com.dianping.puma.manage.monitor.react.InstanceConfigReactorImpl;
 import com.dianping.puma.server.config.PumaConfig;
@@ -26,12 +30,24 @@ public class PumaServerWithoutSpring extends AbstractPumaServer {
     }
 
     private void init() {
+        initManager();
         initReactor();
         initMonitor();
     }
 
+    private void initManager() {
+        InstanceManagerImpl masterImpl = new InstanceManagerImpl();
+
+        InstanceConfigMerger merger = new StrictInstanceConfigMerger();
+        masterImpl.setInstanceConfigMerger(merger);
+
+        manager = masterImpl;
+    }
+
     private void initReactor() {
-        reactor = new InstanceConfigReactorImpl();
+        InstanceConfigReactorImpl reactorImpl = new InstanceConfigReactorImpl();
+        reactorImpl.setInstanceManager(manager);
+        reactor = reactorImpl;
     }
 
     private void initMonitor() {

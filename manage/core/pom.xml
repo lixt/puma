@@ -23,6 +23,12 @@
             <version>${project.version}</version>
         </dependency>
 
+        <dependency>
+            <groupId>com.dianping.puma</groupId>
+            <artifactId>puma-manage-merge</artifactId>
+            <version>${project.version}</version>
+        </dependency>
+
         <!-- log-->
         <dependency>
             <groupId>log4j</groupId>

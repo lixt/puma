@@ -8,11 +8,21 @@ import java.util.Set;
  */
 public class MergedInstanceConfig {
 
+    private String cluster;
+
     private Set<String> databases;
 
     private BinlogCursor binlogCursor;
 
     private Set<BinlogServer> binlogServers;
+
+    public String getCluster() {
+        return cluster;
+    }
+
+    public void setCluster(String cluster) {
+        this.cluster = cluster;
+    }
 
     public Set<String> getDatabases() {
         return databases;

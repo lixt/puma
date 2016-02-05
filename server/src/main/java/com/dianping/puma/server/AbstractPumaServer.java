@@ -17,7 +17,7 @@ public abstract class AbstractPumaServer extends AbstractPumaLifeCycle implement
 
     protected final Logger logger = LoggerFactory.getLogger(getClass());
 
-    protected InstanceManager instanceManager;
+    protected InstanceManager manager;
 
     protected InstanceConfigMonitor monitor;
 
