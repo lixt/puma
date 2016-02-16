@@ -9,17 +9,17 @@ import java.util.regex.Pattern;
  * Created by xiaotian.li on 16/2/15.
  * Email: lixiaotian07@gmail.com
  */
-public class TableBlackFilter extends AbstractPumaFilter {
+public class DatabaseBlackRegexFilter extends AbstractPumaFilter {
 
-    private String blackRegex;
+    private String whiteRegex;
 
     @Override
     public boolean filter(BinlogEvent binlogEvent) throws PumaFilterException {
-        String table = binlogEvent.getTable();
-        return !Pattern.matches(blackRegex, table);
+        String database = binlogEvent.getDatabase();
+        return Pattern.matches(whiteRegex, database);
     }
 
-    public void setBlackRegex(String blackRegex) {
-        this.blackRegex = blackRegex;
+    public void setWhiteRegex(String whiteRegex) {
+        this.whiteRegex = whiteRegex;
     }
 }
