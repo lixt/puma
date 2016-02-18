@@ -13,39 +13,33 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.event;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.packet.PumaContext;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
- * 
- * TODO Comment of QCatalogCode
+ * TODO Comment of UnknownEvent
  * 
  * @author Leo Liang
  * 
  */
-public class QCatalogCode implements StatusVariable {
+public class UnknownEvent extends AbstractBinlogEvent {
 
-	private String	catalogName;
+	private static final long	serialVersionUID	= -1268647758948421482L;
 
-	public QCatalogCode(String catalogName) {
-		this.catalogName = catalogName;
-	}
-
-	public String getCatalogName() {
-		return catalogName;
-	}
-
-	/**
+	/*
+	 * (non-Javadoc)
 	 * 
+	 * @see
+	 * com.dianping.puma.parser.mysql.event.AbstractBinlogEvent#doParse(java
+	 * .nio.ByteBuffer, com.dianping.puma.common.bo.PumaContext)
 	 */
-	public static QCatalogCode valueOf(ByteBuffer buf) throws IOException {
-		buf.get();
-		return new QCatalogCode(PacketUtils.readNullTerminatedString(buf));
+	@Override
+	public void doParse(ByteBuffer buf, PumaContext context) throws IOException {
+
 	}
 
 	/*
@@ -55,7 +49,7 @@ public class QCatalogCode implements StatusVariable {
 	 */
 	@Override
 	public String toString() {
-		return "QCatalogCode [catalogName=" + catalogName + "]";
+		return "UnknownEvent [super.toString()=" + super.toString() + "]";
 	}
 
 }

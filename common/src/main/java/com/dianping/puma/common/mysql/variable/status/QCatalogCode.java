@@ -13,10 +13,10 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.variable.status;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.StatusVariable;
+import com.dianping.puma.common.util.PacketUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;

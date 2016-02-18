@@ -13,39 +13,35 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.variable.status;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.StatusVariable;
+import com.dianping.puma.common.util.PacketUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
  * 
- * TODO Comment of QCatalogCode
+ * TODO Comment of QTableMapForUpdateCode
  * 
  * @author Leo Liang
  * 
  */
-public class QCatalogCode implements StatusVariable {
+public class QTableMapForUpdateCode implements StatusVariable {
 
-	private String	catalogName;
+	private long	tableMap;
 
-	public QCatalogCode(String catalogName) {
-		this.catalogName = catalogName;
+	public QTableMapForUpdateCode(long tableMap) {
+		this.tableMap = tableMap;
 	}
 
-	public String getCatalogName() {
-		return catalogName;
+	public long getTableMap() {
+		return tableMap;
 	}
 
-	/**
-	 * 
-	 */
-	public static QCatalogCode valueOf(ByteBuffer buf) throws IOException {
-		buf.get();
-		return new QCatalogCode(PacketUtils.readNullTerminatedString(buf));
+	public static QTableMapForUpdateCode valueOf(ByteBuffer buf) throws IOException {
+		return new QTableMapForUpdateCode(PacketUtils.readLong(buf, 8));
 	}
 
 	/*
@@ -55,7 +51,7 @@ public class QCatalogCode implements StatusVariable {
 	 */
 	@Override
 	public String toString() {
-		return "QCatalogCode [catalogName=" + catalogName + "]";
+		return "QTableMapForUpdateCode [tableMap=" + tableMap + "]";
 	}
 
 }

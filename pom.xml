@@ -15,6 +15,7 @@
         <module>common</module>
         <module>manage</module>
         <module>instance</module>
+        <module>replicate</module>
         <module>filter</module>
         <module>test</module>
     </modules>

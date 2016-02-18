@@ -13,39 +13,36 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.variable.status;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.StatusVariable;
+import com.dianping.puma.common.util.PacketUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
  * 
- * TODO Comment of QCatalogCode
+ * TODO Comment of QTimeZoneCode
  * 
  * @author Leo Liang
  * 
  */
-public class QCatalogCode implements StatusVariable {
+public class QTimeZoneCode implements StatusVariable {
 
-	private String	catalogName;
+	private String	timeZone;
 
-	public QCatalogCode(String catalogName) {
-		this.catalogName = catalogName;
+	public QTimeZoneCode(String timeZone) {
+		this.timeZone = timeZone;
 	}
 
-	public String getCatalogName() {
-		return catalogName;
+	public String getTimeZone() {
+		return timeZone;
 	}
 
-	/**
-	 * 
-	 */
-	public static QCatalogCode valueOf(ByteBuffer buf) throws IOException {
-		buf.get();
-		return new QCatalogCode(PacketUtils.readNullTerminatedString(buf));
+	public static QTimeZoneCode valueOf(ByteBuffer buf) throws IOException {
+		int length = PacketUtils.readInt(buf, 1);
+		return new QTimeZoneCode(PacketUtils.readFixedLengthString(buf, length));
 	}
 
 	/*
@@ -55,7 +52,7 @@ public class QCatalogCode implements StatusVariable {
 	 */
 	@Override
 	public String toString() {
-		return "QCatalogCode [catalogName=" + catalogName + "]";
+		return "QTimeZoneCode [timeZone=" + timeZone + "]";
 	}
 
 }

@@ -13,39 +13,35 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.variable.status;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.StatusVariable;
+import com.dianping.puma.common.util.PacketUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
  * 
- * TODO Comment of QCatalogCode
+ * TODO Comment of QSQLModeCode
  * 
  * @author Leo Liang
  * 
  */
-public class QCatalogCode implements StatusVariable {
+public class QSQLModeCode implements StatusVariable {
 
-	private String	catalogName;
+	private long	sqlMode;
 
-	public QCatalogCode(String catalogName) {
-		this.catalogName = catalogName;
+	public QSQLModeCode(long sqlMode) {
+		this.sqlMode = sqlMode;
 	}
 
-	public String getCatalogName() {
-		return catalogName;
+	public long getSqlMode() {
+		return sqlMode;
 	}
 
-	/**
-	 * 
-	 */
-	public static QCatalogCode valueOf(ByteBuffer buf) throws IOException {
-		buf.get();
-		return new QCatalogCode(PacketUtils.readNullTerminatedString(buf));
+	public static QSQLModeCode valueOf(ByteBuffer buf) throws IOException {
+		return new QSQLModeCode(PacketUtils.readLong(buf, 8));
 	}
 
 	/*
@@ -55,7 +51,7 @@ public class QCatalogCode implements StatusVariable {
 	 */
 	@Override
 	public String toString() {
-		return "QCatalogCode [catalogName=" + catalogName + "]";
+		return "QSQLModeCode [sqlMode=" + sqlMode + "]";
 	}
 
 }

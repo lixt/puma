@@ -13,26 +13,26 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.variable.status;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.StatusVariable;
+import com.dianping.puma.common.util.PacketUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
  * 
- * TODO Comment of QCatalogCode
+ * TODO Comment of QCatalogNzCode
  * 
  * @author Leo Liang
  * 
  */
-public class QCatalogCode implements StatusVariable {
+public class QCatalogNZCode implements StatusVariable {
 
 	private String	catalogName;
 
-	public QCatalogCode(String catalogName) {
+	public QCatalogNZCode(String catalogName) {
 		this.catalogName = catalogName;
 	}
 
@@ -40,12 +40,9 @@ public class QCatalogCode implements StatusVariable {
 		return catalogName;
 	}
 
-	/**
-	 * 
-	 */
-	public static QCatalogCode valueOf(ByteBuffer buf) throws IOException {
-		buf.get();
-		return new QCatalogCode(PacketUtils.readNullTerminatedString(buf));
+	public static QCatalogNZCode valueOf(ByteBuffer buf) throws IOException {
+		int length = PacketUtils.readInt(buf, 1);
+		return new QCatalogNZCode(PacketUtils.readFixedLengthString(buf, length));
 	}
 
 	/*
@@ -55,7 +52,7 @@ public class QCatalogCode implements StatusVariable {
 	 */
 	@Override
 	public String toString() {
-		return "QCatalogCode [catalogName=" + catalogName + "]";
+		return "QCatalogNZCode [catalogName=" + catalogName + "]";
 	}
 
 }

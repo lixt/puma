@@ -13,39 +13,35 @@
  * accordance with the terms of the license agreement you entered into
  * with dianping.com.
  */
-package com.dianping.puma.parser.mysql.variable.status;
+package com.dianping.puma.common.mysql.variable.status;
 
-import com.dianping.puma.parser.mysql.StatusVariable;
-import com.dianping.puma.utils.PacketUtils;
+import com.dianping.puma.common.mysql.StatusVariable;
+import com.dianping.puma.common.util.PacketUtils;
 
 import java.io.IOException;
 import java.nio.ByteBuffer;
 
 /**
  * 
- * TODO Comment of QCatalogCode
+ * TODO Comment of QLcTimeNamesCode
  * 
  * @author Leo Liang
  * 
  */
-public class QCatalogCode implements StatusVariable {
+public class QLCTimeNamesCode implements StatusVariable {
 
-	private String	catalogName;
+	private int	lcTimeNames;
 
-	public QCatalogCode(String catalogName) {
-		this.catalogName = catalogName;
+	public QLCTimeNamesCode(int lcTimeNames) {
+		this.lcTimeNames = lcTimeNames;
 	}
 
-	public String getCatalogName() {
-		return catalogName;
+	public int getLcTimeNames() {
+		return lcTimeNames;
 	}
 
-	/**
-	 * 
-	 */
-	public static QCatalogCode valueOf(ByteBuffer buf) throws IOException {
-		buf.get();
-		return new QCatalogCode(PacketUtils.readNullTerminatedString(buf));
+	public static QLCTimeNamesCode valueOf(ByteBuffer buf) throws IOException {
+		return new QLCTimeNamesCode(PacketUtils.readInt(buf, 2));
 	}
 
 	/*
@@ -55,7 +51,7 @@ public class QCatalogCode implements StatusVariable {
 	 */
 	@Override
 	public String toString() {
-		return "QCatalogCode [catalogName=" + catalogName + "]";
+		return "QLCTimeNamesCode [lcTimeNames=" + lcTimeNames + "]";
 	}
 
 }
