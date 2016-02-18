@@ -2,11 +2,11 @@ package com.dianping.puma.replicate.mysql;
 
 import com.dianping.puma.common.model.BinlogCursor;
 import com.dianping.puma.common.model.BinlogServer;
-import com.dianping.puma.common.mysql.packet.BinlogPacket;
 import com.dianping.puma.replicate.AbstractPumaReplicator;
 import com.dianping.puma.replicate.exception.PumaReplicateException;
 
 import java.io.InputStream;
+import java.io.OutputStream;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.Set;
@@ -29,8 +29,30 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
 
     private InputStream inputStream;
 
+    private OutputStream outputStream;
+
     @Override
     public ByteBuffer replicate() throws PumaReplicateException {
         return null;
+    }
+
+    private void connect() {
+
+    }
+
+    private void auth() {
+
+    }
+
+    private void setup() {
+
+    }
+
+    private void validate() {
+
+    }
+
+    private void dumpBinlog() {
+
     }
 }
