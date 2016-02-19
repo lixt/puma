@@ -732,11 +732,11 @@ public class DefaultTaskExecutor extends AbstractTaskExecutor {
                         + ", QueryConfig failed Reason:unexcepted binlog format query result.");
                 isQuery = false;
             }
-            BinlogFormat binlogFormat = BinlogFormat.valuesOf(columnValues.get(1));
+            TempBinlogFormat tempBinlogFormat = TempBinlogFormat.valuesOf(columnValues.get(1));
             String eventName = String.format("slave(%s) -- db(%s:%d)", getTaskName(), currentSrcDbEntity.getHost(), currentSrcDbEntity.getPort());
-            if (binlogFormat == null || !binlogFormat.isRow()) {
+            if (tempBinlogFormat == null || !tempBinlogFormat.isRow()) {
                 isQuery = false;
-                LOG.error("TaskName: " + getTaskName() + ", Unexcepted binlog format: " + binlogFormat.value);
+                LOG.error("TaskName: " + getTaskName() + ", Unexcepted binlog format: " + tempBinlogFormat.value);
             }
 
             Cat.logEvent("Slave.dbBinlogFormat", eventName, isQuery ? Message.SUCCESS : "1", "");
@@ -879,12 +879,12 @@ public class DefaultTaskExecutor extends AbstractTaskExecutor {
         this.state.setBinlogInfo(binlogInfo);
     }
 
-    public enum BinlogFormat {
+    public enum TempBinlogFormat {
         STATEMENT("STATEMENT"), ROW("ROW"), MIXED("MIXED");
 
         private String value;
 
-        BinlogFormat(String value) {
+        TempBinlogFormat(String value) {
             this.value = value;
         }
 
@@ -900,9 +900,9 @@ public class DefaultTaskExecutor extends AbstractTaskExecutor {
             return this == MIXED;
         }
 
-        public static BinlogFormat valuesOf(String value) {
-            BinlogFormat[] formats = values();
-            for (BinlogFormat format : formats) {
+        public static TempBinlogFormat valuesOf(String value) {
+            TempBinlogFormat[] formats = values();
+            for (TempBinlogFormat format : formats) {
                 if (format.value.equalsIgnoreCase(value)) {
                     return format;
                 }

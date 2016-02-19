@@ -1,9 +1,12 @@
 package com.dianping.puma.common.model;
 
+import lombok.ToString;
+
 /**
  * Created by xiaotian.li on 16/2/4.
  * Email: lixiaotian07@gmail.com
  */
+@ToString
 public class BinlogCursor {
 
     private Long binlogTimestamp;

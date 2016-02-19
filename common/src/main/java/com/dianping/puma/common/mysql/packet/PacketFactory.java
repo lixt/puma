@@ -57,7 +57,7 @@ public final class PacketFactory {
 			eofPacket.readPacket(is, context);
 			return eofPacket;
 		default:
-			return null;
+			throw new RuntimeException("Unsupported command packet.");
 		}
 	}
 
@@ -76,7 +76,7 @@ public final class PacketFactory {
 			QueryCommandPacket queryCommandPacket = new QueryCommandPacket();
 			return queryCommandPacket;
 		default:
-			return null;
+			throw new RuntimeException("Unsupported command packet");
 		}
 	}
 
