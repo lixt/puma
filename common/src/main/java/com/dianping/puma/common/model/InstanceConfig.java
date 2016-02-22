@@ -14,7 +14,7 @@ public class InstanceConfig {
 
     private String tableBlackRegex;
 
-    private BinlogCursor binlogCursor;
+    private BinlogIndex binlogCursor;
 
     private Set<BinlogServer> binlogServers;
 
@@ -36,11 +36,11 @@ public class InstanceConfig {
         this.database = database;
     }
 
-    public BinlogCursor getBinlogCursor() {
+    public BinlogIndex getBinlogCursor() {
         return binlogCursor;
     }
 
-    public void setBinlogCursor(BinlogCursor binlogCursor) {
+    public void setBinlogCursor(BinlogIndex binlogCursor) {
         this.binlogCursor = binlogCursor;
     }
 

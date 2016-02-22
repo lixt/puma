@@ -14,7 +14,7 @@ public class BinlogEvent implements Serializable {
 
     protected String table;
 
-    protected BinlogCursor binlogCursor;
+    protected BinlogIndex binlogCursor;
 
     public String getDatabase() {
         return database;
@@ -32,11 +32,11 @@ public class BinlogEvent implements Serializable {
         this.table = table;
     }
 
-    public BinlogCursor getBinlogCursor() {
+    public BinlogIndex getBinlogCursor() {
         return binlogCursor;
     }
 
-    public void setBinlogCursor(BinlogCursor binlogCursor) {
+    public void setBinlogCursor(BinlogIndex binlogCursor) {
         this.binlogCursor = binlogCursor;
     }
 }

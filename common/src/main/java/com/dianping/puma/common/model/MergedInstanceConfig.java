@@ -12,7 +12,7 @@ public class MergedInstanceConfig {
 
     private Set<String> databases;
 
-    private BinlogCursor binlogCursor;
+    private BinlogIndex binlogCursor;
 
     private Set<BinlogServer> binlogServers;
 
@@ -32,11 +32,11 @@ public class MergedInstanceConfig {
         this.databases = databases;
     }
 
-    public BinlogCursor getBinlogCursor() {
+    public BinlogIndex getBinlogCursor() {
         return binlogCursor;
     }
 
-    public void setBinlogCursor(BinlogCursor binlogCursor) {
+    public void setBinlogCursor(BinlogIndex binlogCursor) {
         this.binlogCursor = binlogCursor;
     }
 

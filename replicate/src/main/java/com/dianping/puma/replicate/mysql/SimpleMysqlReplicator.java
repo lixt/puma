@@ -1,6 +1,6 @@
 package com.dianping.puma.replicate.mysql;
 
-import com.dianping.puma.common.model.BinlogCursor;
+import com.dianping.puma.common.model.BinlogIndex;
 import com.dianping.puma.common.model.BinlogServer;
 import com.dianping.puma.common.mysql.QueryExecutor;
 import com.dianping.puma.common.mysql.ResultSet;
@@ -9,6 +9,7 @@ import com.dianping.puma.replicate.AbstractPumaReplicator;
 import com.dianping.puma.replicate.exception.*;
 import com.dianping.puma.replicate.mysql.constant.BinlogFormat;
 import com.dianping.puma.replicate.mysql.constant.BinlogRowImage;
+import com.dianping.puma.replicate.mysql.packet.Packets;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -17,7 +18,6 @@ import java.net.InetSocketAddress;
 import java.net.Socket;
 import java.nio.ByteBuffer;
 import java.util.List;
-import java.util.Set;
 
 /**
  * Created by xiaotian.li on 16/2/16.
@@ -29,11 +29,9 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
 
     private String cluster;
 
-    private Set<String> databases;
-
     private BinlogServer binlogServer;
 
-    private BinlogCursor binlogCursor;
+    private BinlogIndex binlogIndex;
 
     private long connectTimeoutInSecond = 10;
 
@@ -47,7 +45,19 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
 
     @Override
     public ByteBuffer replicate() throws PumaReplicateException {
-        return null;
+        try {
+            BinlogPacket binlogPacket = Packets.readBinlogPacket(inputStream);
+
+            if (!binlogPacket.isOk()) {
+                throw new BinlogReadException();
+            }
+
+            return binlogPacket.getBinlogBuf();
+
+        } catch (Throwable t) {
+            throw new PumaReplicateException("Failed to replicate " +
+                    "cluster[%s] on server[%s].", cluster, binlogServer);
+        }
     }
 
     @Override
@@ -63,6 +73,18 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
         } catch (Throwable t) {
             throw new PumaReplicateException("Failed to start replicator for " +
                     "cluster[%s] on binlog server[%s].", cluster, binlogServer, t);
+        }
+    }
+
+    @Override
+    public void stop() {
+        super.stop();
+
+        try {
+            inputStream.close();
+            outputStream.close();
+            socket.close();
+        } catch (Throwable ignore) {
         }
     }
 
@@ -173,10 +195,10 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
 
         ComBinlogDumpPacket dumpBinlogPacket = (ComBinlogDumpPacket) PacketFactory.createCommandPacket(
                 PacketType.COM_BINLOG_DUMP_PACKET, context);
-        dumpBinlogPacket.setBinlogFileName(binlogCursor.getBinlogFileName());
+        dumpBinlogPacket.setBinlogFileName(binlogIndex.getBinlogPosition().getBinlogFileName());
         dumpBinlogPacket.setBinlogFlag(0);
-        dumpBinlogPacket.setBinlogPosition(binlogCursor.getBinlogPosition());
-        dumpBinlogPacket.setServerId(binlogCursor.getServerId());
+        dumpBinlogPacket.setBinlogPosition(binlogIndex.getBinlogPosition().getBinlogFileOffset());
+        dumpBinlogPacket.setServerId(binlogIndex.getBinlogPosition().getServerId());
         dumpBinlogPacket.buildPacket(context);
         dumpBinlogPacket.write(outputStream, context);
 
@@ -194,16 +216,12 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
         this.cluster = cluster;
     }
 
-    public void setDatabases(Set<String> databases) {
-        this.databases = databases;
-    }
-
     public void setBinlogServer(BinlogServer binlogServer) {
         this.binlogServer = binlogServer;
     }
 
-    public void setBinlogCursor(BinlogCursor binlogCursor) {
-        this.binlogCursor = binlogCursor;
+    public void setBinlogIndex(BinlogIndex binlogIndex) {
+        this.binlogIndex = binlogIndex;
     }
 
     public void setConnectTimeoutInSecond(long connectTimeoutInSecond) {

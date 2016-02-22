@@ -1,7 +1,7 @@
 package com.dianping.puma.manage.merge;
 
 import com.dianping.puma.common.AbstractPumaLifeCycle;
-import com.dianping.puma.common.model.BinlogCursor;
+import com.dianping.puma.common.model.BinlogIndex;
 import com.dianping.puma.common.model.BinlogServer;
 import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.common.model.MergedInstanceConfig;
@@ -26,7 +26,7 @@ public abstract class AbstractInstanceConfigMerger extends AbstractPumaLifeCycle
         Set<String> mergedDatabases = Sets.newHashSet(database);
         mergedInstanceConfig.setDatabases(mergedDatabases);
 
-        BinlogCursor binlogCursor = instanceConfig.getBinlogCursor();
+        BinlogIndex binlogCursor = instanceConfig.getBinlogCursor();
         mergedInstanceConfig.setBinlogCursor(binlogCursor);
 
         Set<BinlogServer> binlogServers = instanceConfig.getBinlogServers();
@@ -44,8 +44,8 @@ public abstract class AbstractInstanceConfigMerger extends AbstractPumaLifeCycle
         mergedDatabases = mergeDatabase(mergedDatabases, database);
         mergedInstanceConfig.setDatabases(mergedDatabases);
 
-        BinlogCursor mergedBinlogCursor = mergedInstanceConfig.getBinlogCursor();
-        BinlogCursor binlogCursor = instanceConfig.getBinlogCursor();
+        BinlogIndex mergedBinlogCursor = mergedInstanceConfig.getBinlogCursor();
+        BinlogIndex binlogCursor = instanceConfig.getBinlogCursor();
         mergedBinlogCursor = mergeBinlogCursor(mergedBinlogCursor, binlogCursor);
         mergedInstanceConfig.setBinlogCursor(mergedBinlogCursor);
 
@@ -66,7 +66,7 @@ public abstract class AbstractInstanceConfigMerger extends AbstractPumaLifeCycle
         }
     }
 
-    protected BinlogCursor mergeBinlogCursor(BinlogCursor mergedBinlogCursor, BinlogCursor binlogCursor) {
+    protected BinlogIndex mergeBinlogCursor(BinlogIndex mergedBinlogCursor, BinlogIndex binlogCursor) {
         if (mergedBinlogCursor == null) {
             return binlogCursor;
         } else {
