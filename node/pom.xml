@@ -14,7 +14,8 @@
     <packaging>pom</packaging>
 
     <modules>
-        <module>parse</module>
         <module>replicate</module>
+        <module>parse</module>
+        <module>filter</module>
     </modules>
 </project>

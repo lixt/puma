@@ -16,7 +16,6 @@
         <module>manage</module>
         <module>node</module>
         <module>instance</module>
-        <module>filter</module>
         <module>test</module>
     </modules>
 
