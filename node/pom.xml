@@ -15,5 +15,6 @@
 
     <modules>
         <module>parse</module>
+        <module>replicate</module>
     </modules>
 </project>
