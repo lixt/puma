@@ -1,7 +1,7 @@
 package com.dianping.puma.node.parse;
 
 import com.dianping.puma.common.PumaLifeCycle;
-import com.dianping.puma.common.model.BinlogEvent;
+import com.dianping.puma.common.model.PumaEvent;
 import com.dianping.puma.node.parse.exception.PumaParseException;
 
 import java.nio.ByteBuffer;
@@ -12,5 +12,5 @@ import java.nio.ByteBuffer;
  */
 public interface PumaParser extends PumaLifeCycle {
 
-    BinlogEvent parse(ByteBuffer byteBuffer) throws PumaParseException;
+    PumaEvent parse(ByteBuffer byteBuffer) throws PumaParseException;
 }

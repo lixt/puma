@@ -13,6 +13,7 @@
         <module>puma-core</module>
         <module>server</module>
         <module>common</module>
+        <module>driver</module>
         <module>manage</module>
         <module>node</module>
         <module>instance</module>

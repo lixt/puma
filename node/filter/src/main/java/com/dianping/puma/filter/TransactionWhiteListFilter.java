@@ -1,8 +1,8 @@
 package com.dianping.puma.filter;
 
 import com.dianping.puma.common.constant.Transaction;
-import com.dianping.puma.common.model.BinlogEvent;
-import com.dianping.puma.common.model.TransactionBinlogEvent;
+import com.dianping.puma.common.model.PumaEvent;
+import com.dianping.puma.common.model.TransactionPumaEvent;
 import com.dianping.puma.filter.exception.PumaFilterException;
 import com.google.common.collect.Lists;
 
@@ -18,12 +18,12 @@ public class TransactionWhiteListFilter extends AbstractPumaFilter {
     private List<Transaction> whiteList = Lists.newArrayList();
 
     @Override
-    public boolean filter(BinlogEvent binlogEvent) throws PumaFilterException {
-        if (!(binlogEvent instanceof TransactionBinlogEvent)) {
+    public boolean filter(PumaEvent binlogEvent) throws PumaFilterException {
+        if (!(binlogEvent instanceof TransactionPumaEvent)) {
             return true;
         }
 
-        Transaction transaction = ((TransactionBinlogEvent) binlogEvent).getTransaction();
+        Transaction transaction = ((TransactionPumaEvent) binlogEvent).getTransaction();
         return whiteList.contains(transaction);
     }
 

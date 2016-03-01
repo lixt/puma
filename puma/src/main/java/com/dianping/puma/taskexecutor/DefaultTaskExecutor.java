@@ -475,7 +475,7 @@ public class DefaultTaskExecutor extends AbstractTaskExecutor {
         // 一直处理一个binlogEvent的多行，处理完每行马上分发，以防止一个binlogEvent包含太多ChangedEvent而耗费太多内存
         int eventIndex = 0;
         do {
-            dataHandlerResult = dataHandler.process(binlogEvent, getContext());
+            dataHandlerResult = dataHandler.process(binlogEvent);
             if (dataHandlerResult != null && !dataHandlerResult.isEmpty()) {
                 ChangedEvent changedEvent = dataHandlerResult.getData();
 

@@ -7,7 +7,7 @@ import lombok.ToString;
  * Email: lixiaotian07@gmail.com
  */
 @ToString
-public class BinlogServer {
+public class SQLServer {
 
     private long serverId;
 

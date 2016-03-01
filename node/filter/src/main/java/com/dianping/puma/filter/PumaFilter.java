@@ -1,7 +1,7 @@
 package com.dianping.puma.filter;
 
 import com.dianping.puma.common.PumaLifeCycle;
-import com.dianping.puma.common.model.BinlogEvent;
+import com.dianping.puma.common.model.PumaEvent;
 import com.dianping.puma.filter.exception.PumaFilterException;
 
 /**
@@ -10,5 +10,5 @@ import com.dianping.puma.filter.exception.PumaFilterException;
  */
 public interface PumaFilter extends PumaLifeCycle {
 
-    boolean filter(BinlogEvent binlogEvent) throws PumaFilterException;
+    boolean filter(PumaEvent binlogEvent) throws PumaFilterException;
 }

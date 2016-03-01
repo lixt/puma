@@ -115,7 +115,7 @@ public abstract class AbstractDataHandler implements DataHandler {
     }
 
     @Override
-    public DataHandlerResult process(BinlogEvent binlogEvent, PumaContext context) {
+    public DataHandlerResult process(BinlogEvent binlogEvent) {
         DataHandlerResult result = new DataHandlerResult();
         if (binlogEvent instanceof PumaIgnoreEvent) {
             log.info("Ingore one unknown event. eventType: " + binlogEvent.getHeader().getEventType());
@@ -137,12 +137,12 @@ public abstract class AbstractDataHandler implements DataHandler {
         } else if (eventType == BinlogConstants.QUERY_EVENT) {
             handleQueryEvent(binlogEvent, result);
         } else {
-            doProcess(result, binlogEvent, context, eventType);
+            doProcess(result, binlogEvent, eventType);
         }
 
         if (result != null && !result.isEmpty() && result.getData() != null) {
-            BinlogInfo binlogInfo = new BinlogInfo(context.getDBServerId(), context.getBinlogFileName(),
-                    context.getBinlogStartPos(), context.getEventIndex(), binlogEvent.getHeader().getTimestamp());
+            // @// TODO: 16/2/26
+            BinlogInfo binlogInfo = new BinlogInfo();
             result.getData().setBinlogInfo(binlogInfo);
             result.getData().setServerId(binlogEvent.getHeader().getServerId());
         }
@@ -226,6 +226,5 @@ public abstract class AbstractDataHandler implements DataHandler {
         result.setFinished(true);
     }
 
-    protected abstract void doProcess(DataHandlerResult result, BinlogEvent binlogEvent, PumaContext context,
-                                      byte eventType);
+    protected abstract void doProcess(DataHandlerResult result, BinlogEvent binlogEvent, byte eventType);
 }

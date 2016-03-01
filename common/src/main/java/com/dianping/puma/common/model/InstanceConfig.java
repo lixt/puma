@@ -16,7 +16,7 @@ public class InstanceConfig {
 
     private BinlogIndex binlogCursor;
 
-    private Set<BinlogServer> binlogServers;
+    private Set<SQLServer> binlogServers;
 
     private boolean mergable;
 
@@ -44,11 +44,11 @@ public class InstanceConfig {
         this.binlogCursor = binlogCursor;
     }
 
-    public Set<BinlogServer> getBinlogServers() {
+    public Set<SQLServer> getBinlogServers() {
         return binlogServers;
     }
 
-    public void setBinlogServers(Set<BinlogServer> binlogServers) {
+    public void setBinlogServers(Set<SQLServer> binlogServers) {
         this.binlogServers = binlogServers;
     }
 

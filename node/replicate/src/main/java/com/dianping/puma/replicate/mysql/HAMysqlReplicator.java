@@ -1,6 +1,6 @@
 package com.dianping.puma.replicate.mysql;
 
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 import com.dianping.puma.replicate.AbstractPumaReplicator;
 import com.dianping.puma.replicate.exception.PumaReplicateException;
 
@@ -13,7 +13,7 @@ import java.util.List;
  */
 public class HAMysqlReplicator extends AbstractPumaReplicator {
 
-    private List<BinlogServer> binlogServers;
+    private List<SQLServer> binlogServers;
 
 
 

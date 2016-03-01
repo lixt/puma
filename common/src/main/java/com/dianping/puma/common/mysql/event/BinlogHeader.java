@@ -15,7 +15,6 @@
  */
 package com.dianping.puma.common.mysql.event;
 
-import com.dianping.puma.common.mysql.packet.PumaContext;
 import com.dianping.puma.common.util.PacketUtils;
 import org.apache.commons.lang3.builder.ToStringBuilder;
 
@@ -141,7 +140,7 @@ public class BinlogHeader implements Serializable {
 		      .append("flags", flags).toString();
 	}
 
-	public void parse(ByteBuffer buf, PumaContext context) {
+	public void parse(ByteBuffer buf) {
 		timestamp = PacketUtils.readLong(buf, 4);
 		eventType = buf.get();
 		serverId = PacketUtils.readLong(buf, 4);

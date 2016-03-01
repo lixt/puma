@@ -1,6 +1,6 @@
 package com.dianping.puma.manage.monitor.support;
 
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 
 import java.util.Set;
 
@@ -12,5 +12,5 @@ public interface DatabaseClusterReader {
 
     String getCluster(String database);
 
-    Set<BinlogServer> getServers(String cluster);
+    Set<SQLServer> getServers(String cluster);
 }

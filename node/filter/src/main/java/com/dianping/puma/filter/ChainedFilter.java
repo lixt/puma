@@ -1,6 +1,6 @@
 package com.dianping.puma.filter;
 
-import com.dianping.puma.common.model.BinlogEvent;
+import com.dianping.puma.common.model.PumaEvent;
 import com.dianping.puma.filter.exception.PumaFilterException;
 import com.google.common.base.Predicate;
 import com.google.common.collect.FluentIterable;
@@ -17,7 +17,7 @@ public class ChainedFilter extends AbstractPumaFilter {
     private List<PumaFilter> pumaFilters = Lists.newArrayList();
 
     @Override
-    public boolean filter(final BinlogEvent binlogEvent) throws PumaFilterException {
+    public boolean filter(final PumaEvent binlogEvent) throws PumaFilterException {
         return FluentIterable
                 .from(pumaFilters)
                 .allMatch(new Predicate<PumaFilter>() {

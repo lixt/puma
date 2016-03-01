@@ -1,6 +1,6 @@
 package com.dianping.puma.replicate.ha;
 
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 
 /**
  * Created by xiaotian.li on 16/2/21.
@@ -11,7 +11,7 @@ public class RoundRobinRouter extends AbstractBinlogRouter {
     private int index;
 
     @Override
-    public BinlogServer next() {
+    public SQLServer next() {
         int total = binlogServers.size();
         if (index > total - 1) {
             index -= total;

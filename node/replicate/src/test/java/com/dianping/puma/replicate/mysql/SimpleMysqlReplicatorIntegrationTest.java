@@ -1,7 +1,7 @@
 package com.dianping.puma.replicate.mysql;
 
 import com.dianping.puma.common.model.BinlogIndex;
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 
 /**
  * Created by xiaotian.li on 16/2/19.
@@ -20,7 +20,7 @@ public class SimpleMysqlReplicatorIntegrationTest {
         binlogIndex.getBinlogPosition().setBinlogFileOffset(4L);
         replicator.setBinlogIndex(binlogIndex);
 
-        BinlogServer binlogServer = new BinlogServer();
+        SQLServer binlogServer = new SQLServer();
         binlogServer.setHost("127.0.0.1");
         binlogServer.setPort(3306);
         binlogServer.setBinlogUsername("test");

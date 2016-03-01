@@ -1,6 +1,6 @@
 package com.dianping.puma.manage.merge;
 
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 
 import java.util.Set;
 
@@ -11,8 +11,8 @@ import java.util.Set;
 public class StrictInstanceConfigMerger extends AbstractInstanceConfigMerger {
 
     @Override
-    protected Set<BinlogServer> mergeBinlogServers(Set<BinlogServer> mergedBinlogServers,
-                                                   Set<BinlogServer> binlogServers) {
+    protected Set<SQLServer> mergeBinlogServers(Set<SQLServer> mergedBinlogServers,
+                                                Set<SQLServer> binlogServers) {
         return null;
     }
 }

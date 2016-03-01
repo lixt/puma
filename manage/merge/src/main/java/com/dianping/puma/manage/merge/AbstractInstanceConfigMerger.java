@@ -2,7 +2,7 @@ package com.dianping.puma.manage.merge;
 
 import com.dianping.puma.common.AbstractPumaLifeCycle;
 import com.dianping.puma.common.model.BinlogIndex;
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 import com.dianping.puma.common.model.InstanceConfig;
 import com.dianping.puma.common.model.MergedInstanceConfig;
 import com.dianping.puma.manage.merge.exception.PumaMergeException;
@@ -29,7 +29,7 @@ public abstract class AbstractInstanceConfigMerger extends AbstractPumaLifeCycle
         BinlogIndex binlogCursor = instanceConfig.getBinlogCursor();
         mergedInstanceConfig.setBinlogCursor(binlogCursor);
 
-        Set<BinlogServer> binlogServers = instanceConfig.getBinlogServers();
+        Set<SQLServer> binlogServers = instanceConfig.getBinlogServers();
         mergedInstanceConfig.setBinlogServers(binlogServers);
 
         return mergedInstanceConfig;
@@ -49,8 +49,8 @@ public abstract class AbstractInstanceConfigMerger extends AbstractPumaLifeCycle
         mergedBinlogCursor = mergeBinlogCursor(mergedBinlogCursor, binlogCursor);
         mergedInstanceConfig.setBinlogCursor(mergedBinlogCursor);
 
-        Set<BinlogServer> mergedBinlogServers = mergedInstanceConfig.getBinlogServers();
-        Set<BinlogServer> binlogServers = instanceConfig.getBinlogServers();
+        Set<SQLServer> mergedBinlogServers = mergedInstanceConfig.getBinlogServers();
+        Set<SQLServer> binlogServers = instanceConfig.getBinlogServers();
         mergedBinlogServers = mergeBinlogServers(mergedBinlogServers, binlogServers);
         mergedInstanceConfig.setBinlogServers(mergedBinlogServers);
 
@@ -90,8 +90,8 @@ public abstract class AbstractInstanceConfigMerger extends AbstractPumaLifeCycle
         return null;
     }
 
-    protected abstract Set<BinlogServer> mergeBinlogServers(
-            Set<BinlogServer> mergedBinlogServers, Set<BinlogServer> binlogServers);
+    protected abstract Set<SQLServer> mergeBinlogServers(
+            Set<SQLServer> mergedBinlogServers, Set<SQLServer> binlogServers);
 
     public void setMinBinlogIntervalInSecond(long minBinlogIntervalInSecond) {
         this.minBinlogIntervalInSecond = minBinlogIntervalInSecond;

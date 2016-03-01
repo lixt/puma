@@ -14,7 +14,7 @@ public class MergedInstanceConfig {
 
     private BinlogIndex binlogCursor;
 
-    private Set<BinlogServer> binlogServers;
+    private Set<SQLServer> binlogServers;
 
     public String getCluster() {
         return cluster;
@@ -40,11 +40,11 @@ public class MergedInstanceConfig {
         this.binlogCursor = binlogCursor;
     }
 
-    public Set<BinlogServer> getBinlogServers() {
+    public Set<SQLServer> getBinlogServers() {
         return binlogServers;
     }
 
-    public void setBinlogServers(Set<BinlogServer> binlogServers) {
+    public void setBinlogServers(Set<SQLServer> binlogServers) {
         this.binlogServers = binlogServers;
     }
 }

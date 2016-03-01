@@ -1,7 +1,7 @@
 package com.dianping.puma.replicate.mysql;
 
 import com.dianping.puma.common.model.BinlogIndex;
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 import com.dianping.puma.common.mysql.QueryExecutor;
 import com.dianping.puma.common.mysql.ResultSet;
 import com.dianping.puma.common.mysql.packet.*;
@@ -29,7 +29,7 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
 
     private String cluster;
 
-    private BinlogServer binlogServer;
+    private SQLServer binlogServer;
 
     private BinlogIndex binlogIndex;
 
@@ -216,7 +216,7 @@ public class SimpleMysqlReplicator extends AbstractPumaReplicator {
         this.cluster = cluster;
     }
 
-    public void setBinlogServer(BinlogServer binlogServer) {
+    public void setBinlogServer(SQLServer binlogServer) {
         this.binlogServer = binlogServer;
     }
 

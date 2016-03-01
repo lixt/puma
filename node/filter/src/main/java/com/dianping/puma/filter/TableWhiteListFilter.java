@@ -1,6 +1,6 @@
 package com.dianping.puma.filter;
 
-import com.dianping.puma.common.model.BinlogEvent;
+import com.dianping.puma.common.model.PumaEvent;
 import com.dianping.puma.filter.exception.PumaFilterException;
 
 import java.util.List;
@@ -14,7 +14,7 @@ public class TableWhiteListFilter extends AbstractPumaFilter {
     private List<String> whiteList;
 
     @Override
-    public boolean filter(BinlogEvent binlogEvent) throws PumaFilterException {
+    public boolean filter(PumaEvent binlogEvent) throws PumaFilterException {
         String table = binlogEvent.getTable();
         return whiteList.contains(table);
     }

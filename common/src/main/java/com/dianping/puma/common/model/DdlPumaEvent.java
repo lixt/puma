@@ -6,7 +6,7 @@ import com.dianping.puma.common.constant.DDL;
  * Created by xiaotian.li on 16/2/16.
  * Email: lixiaotian07@gmail.com
  */
-public class DdlBinlogEvent extends BinlogEvent {
+public class DdlPumaEvent extends PumaEvent {
 
     private DDL ddl;
 

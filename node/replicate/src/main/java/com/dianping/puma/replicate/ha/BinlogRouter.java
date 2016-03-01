@@ -1,7 +1,7 @@
 package com.dianping.puma.replicate.ha;
 
 import com.dianping.puma.common.PumaLifeCycle;
-import com.dianping.puma.common.model.BinlogServer;
+import com.dianping.puma.common.model.SQLServer;
 
 /**
  * Created by xiaotian.li on 16/2/21.
@@ -9,7 +9,7 @@ import com.dianping.puma.common.model.BinlogServer;
  */
 public interface BinlogRouter extends PumaLifeCycle {
 
-    BinlogServer next();
+    SQLServer next();
 
-    BinlogServer getByServerId(Long serverId);
+    SQLServer getByServerId(Long serverId);
 }

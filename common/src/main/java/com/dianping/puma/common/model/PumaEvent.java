@@ -6,7 +6,7 @@ import java.io.Serializable;
  * Created by xiaotian.li on 16/2/15.
  * Email: lixiaotian07@gmail.com
  */
-public class BinlogEvent implements Serializable {
+public class PumaEvent implements Serializable {
 
     private static final long serialVersionUID = 7986284681273254506L;
 

@@ -1,6 +1,6 @@
 package com.dianping.puma.filter;
 
-import com.dianping.puma.common.model.BinlogEvent;
+import com.dianping.puma.common.model.PumaEvent;
 import com.dianping.puma.filter.exception.PumaFilterException;
 import com.google.common.collect.Lists;
 
@@ -15,7 +15,7 @@ public class DatabaseBlackListFilter extends AbstractPumaFilter {
     private List<String> blackList = Lists.newArrayList();
 
     @Override
-    public boolean filter(BinlogEvent binlogEvent) throws PumaFilterException {
+    public boolean filter(PumaEvent binlogEvent) throws PumaFilterException {
         String database = binlogEvent.getDatabase();
         return !blackList.contains(database);
     }
